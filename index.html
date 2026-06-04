@@ -1,23 +1,70 @@
-@"
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Neelansh Dosi Resume</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
+    <title>Neelansh Dosi | Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
 
-    iframe {
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
-  </style>
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: #222;
+            color: white;
+        }
+
+        .hero h1 {
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            color: white;
+            background: #0078ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .resume-section {
+            height: 100vh;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-  <iframe src="Neelansh_Dosi_Resume.pdf"></iframe>
+
+    <div class="hero">
+        <h1>Hi, I'm Neelansh Dosi</h1>
+        <p>Computer Science Student | AI Enthusiast | UI/UX Aspirant</p>
+
+        <div class="buttons">
+            <a href="Neelansh_Dosi_Resume.pdf" target="_blank">View Resume</a>
+            <a href="https://github.com/YOUR_USERNAME" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <div class="resume-section">
+        <iframe src="Neelansh_Dosi_Resume.pdf"></iframe>
+    </div>
+
 </body>
 </html>
-"@ | Set-Content index.html
