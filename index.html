@@ -385,6 +385,13 @@
             transform: scale(1.05);
         }
 
+        .skill-tag.active {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 0 10px var(--accent-light);
+            transform: scale(1.05);
+        }
+
         /* Projects Section */
         .projects-grid {
             display: flex;
@@ -408,6 +415,18 @@
             box-shadow: var(--shadow-md);
             border-color: var(--accent-color);
             transform: translateX(4px);
+        }
+
+        .project-card.highlight {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 16px var(--accent-light);
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .project-card.dimmed {
+            opacity: 0.3;
+            filter: grayscale(40%);
         }
 
         .project-header {
@@ -1009,6 +1028,7 @@
         <section id="skills">
             <div class="section-header">
                 <h2 class="section-title">Technical Skills</h2>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; font-weight: 500;">💡 Click any skill tag to highlight the projects that use it.</p>
             </div>
             <div class="skills-grid">
                 <!-- AI/ML -->
@@ -1475,6 +1495,56 @@
                 item.classList.remove('active');
                 if (item.getAttribute('href') === `#${current}`) {
                     item.classList.add('active');
+                }
+            });
+        });
+
+        // Skill Filtering & Highlighting Interaction
+        const skillTags = document.querySelectorAll('.skill-tag');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        skillTags.forEach(tag => {
+            tag.style.cursor = 'pointer';
+            tag.addEventListener('click', () => {
+                const isAlreadyActive = tag.classList.contains('active');
+                
+                // Reset active class on all tags
+                skillTags.forEach(t => t.classList.remove('active'));
+                
+                if (isAlreadyActive) {
+                    // Reset highlights
+                    projectCards.forEach(card => {
+                        card.classList.remove('highlight', 'dimmed');
+                    });
+                } else {
+                    // Activate clicked tag
+                    tag.classList.add('active');
+                    const skillName = tag.textContent.trim().toLowerCase();
+                    
+                    projectCards.forEach(card => {
+                        const badges = card.querySelectorAll('.tech-badge');
+                        let matches = false;
+                        
+                        badges.forEach(badge => {
+                            const badgeText = badge.textContent.trim().toLowerCase();
+                            // Support checks for skills
+                            if (badgeText === skillName || 
+                                (skillName === 'nlp' && badgeText.includes('nlp')) ||
+                                (skillName === 'google generative ai' && badgeText.includes('generative ai')) ||
+                                (skillName.includes('hugging face') && badgeText.includes('hugging face'))
+                            ) {
+                                matches = true;
+                            }
+                        });
+                        
+                        if (matches) {
+                            card.classList.add('highlight');
+                            card.classList.remove('dimmed');
+                        } else {
+                            card.classList.add('dimmed');
+                            card.classList.remove('highlight');
+                        }
+                    });
                 }
             });
         });
