@@ -952,6 +952,23 @@
             box-shadow: 0 0 8px var(--accent-light);
         }
 
+        /* Print Optimization stylesheet */
+        @media print {
+            nav, .hero-cta, #scroll-top, .pdf-actions, .mobile-pdf-fallback {
+                display: none !important;
+            }
+            body {
+                padding-top: 0 !important;
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+            section {
+                page-break-inside: avoid;
+                border-top: none !important;
+                padding: 20px 0 !important;
+            }
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 900px) {
             .two-column {
